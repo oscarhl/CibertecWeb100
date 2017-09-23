@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cibertec.Repositories.EntityFramework\Cibertec.Repositories.EntityFramework.csproj" />
+    <ProjectReference Include="..\Cibertec.UnitOfWork\Cibertec.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>
