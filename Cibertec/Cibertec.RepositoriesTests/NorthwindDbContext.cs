@@ -1,12 +1,9 @@
 ﻿using Cibertec.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Cibertec.RepositoriesTests
+namespace Cibertec.Repositories.EntityFrameworkTest
 {
-    public class NorthwindDbContext : DbContext
+    public class NorthwindDbContext: DbContext
     {
         public DbSet<Customer> Customers { get; set; }
 
@@ -20,6 +17,4 @@ namespace Cibertec.RepositoriesTests
             modelBuilder.Entity<Customer>().ToTable("Customer");
         }
     }
-
-   
 }

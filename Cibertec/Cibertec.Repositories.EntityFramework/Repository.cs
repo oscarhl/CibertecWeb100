@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Cibertec.Repositories
+namespace Cibertec.Repositories.EntityFramework
 {
-    public class RepositoryEF<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _context;
+        protected DbContext _context;
 
-        public RepositoryEF(DbContext context)
+        public Repository(DbContext context)
         {
             _context = context;
         }
@@ -15,8 +15,7 @@ namespace Cibertec.Repositories
         public bool Delete(T entity)
         {
             _context.Remove(entity);
-            return _context.SaveChanges()>0;       
-            
+            return _context.SaveChanges() > 0;
         }
 
         public T GetById(int id)
@@ -33,7 +32,6 @@ namespace Cibertec.Repositories
         {
             _context.Add(entity);
             return _context.SaveChanges();
-
         }
 
         public bool Update(T entity)
