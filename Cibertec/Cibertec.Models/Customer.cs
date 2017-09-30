@@ -1,4 +1,6 @@
-﻿namespace Cibertec.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Cibertec.Models
 {
     public class Customer
     {

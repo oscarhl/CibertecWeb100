@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Cibertec.UnitOfWork;
+using Cibertec.Repositories.EntityFramework.Northwind;
+using Cibertec.MVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cibertec.MVC
 {
@@ -21,7 +25,21 @@ namespace Cibertec.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddTransient<IUnitOfWork>(
+                 //para esta interfaz vas a implementar un nuevo
+                 option => new NorthwindUnitOfWork
+                 (
+                     new NorthwindDbContext(
+                         new DbContextOptionsBuilder<NorthwindDbContext>()
+                         .UseSqlServer(Configuration.GetConnectionString("Northwind"))
+                         .Options
+                     )
+                 )
+             );
+
+            services.AddMvc();//.¿AddFluentValidation();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
