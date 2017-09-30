@@ -10,6 +10,10 @@ using Cibertec.UnitOfWork;
 using Cibertec.MVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Cibertec.Repositories.Dapper.Northwind;
+using FluentValidation.AspNetCore;
+using Cibertec.MVC.Validators;
+using Cibertec.Models;
+using FluentValidation;
 
 namespace Cibertec.MVC
 {
@@ -32,7 +36,10 @@ namespace Cibertec.MVC
                     Configuration.GetConnectionString("Northwind")
                  )
             );
-            services.AddMvc();//.¿AddFluentValidation();
+
+             services.AddMvc().AddFluentValidation();
+
+            services.AddTransient<IValidator<Customer>, CustomerValidator>();
 
 
         }
